@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     'category',
     'accounts',
     'store',
+    'cart',
     # 'orders',
-    # 'carts',
     # 'storages',
     # 'admin_honeypot',
 ]
