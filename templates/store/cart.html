@@ -7,6 +7,8 @@
     
     <!-- ============================ COMPONENT 1 ================================= -->
     {% if not cart_items %}
+    <!-- print message if not print the rest of this component -->
+
         <h2 class="text-center">Your Shopping Cart is Empty</h2>
         <br>
         <div class="text-center">
@@ -36,7 +38,7 @@
                 <!-- <div class="aside"><img src="{% static './images/items/11.jpg' %}" class="img-sm"></div> -->
 
                 <figcaption class="info">
-                    <a href="#" class="title text-dark">{{ cart_item.product.product_name }}</a>
+                    <a href="{{ cart_item.product.get_url }}" class="title text-dark">{{ cart_item.product.product_name }}</a>
                     <p class="text-muted small">Color: 25 Mpx <br> Size: Canon</p>
                     
                     <!-- <a href="#" class="title text-dark">Camera Canon EOS M50 Kit</a> -->
@@ -55,7 +57,7 @@
                                 <input type="text" class="form-control"  value="{{ cart_item.quantity }}">
                                 <!-- <input type="text" class="form-control"  value="1"> -->
                                 <div class="input-group-append">
-                                <a href="{% url 'add_cart' cart_item.product.id %}" type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
+                                <a href="{% url 'add_cart' cart_item.product.id %}" class="btn btn-light"  type="button" id="button-minus"> <i class="fa fa-plus"></i> </a>
 
                                 <!-- <button class="btn btn-light" type="button" id="button-minus"> <i class="fa fa-plus"></i> </button> -->
                                 </div>
@@ -107,7 +109,8 @@
                     <img src="{% static './images/misc/payments.png' %}" height="26">
                 </p>
                 <a href="./place-order.html" class="btn btn-primary btn-block"> Checkout </a>
-                <a href="./store.html" class="btn btn-light btn-block">Continue Shopping</a>
+                <a href="{% url 'store' %}" class="btn btn-light btn-block">Continue Shopping</a>
+                <!-- <a href="./store.html" class="btn btn-light btn-block">Continue Shopping</a> -->
             </div> <!-- card-body.// -->
             </div> <!-- card.// -->
     
