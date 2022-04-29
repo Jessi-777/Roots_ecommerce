@@ -138,6 +138,9 @@ STATICFILES_DIRS = [
     'familyecommerce/static',
 ]
 
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
 # STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'familyecommerce/static'),
 # ]
@@ -149,3 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger',
+}
