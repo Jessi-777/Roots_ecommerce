@@ -9,15 +9,16 @@
 <div class="card">
 	<div class="row no-gutters">
 		<aside class="col-md-6">
-<article class="gallery-wrap"> 
-	<div class="img-big-wrap">
-	   <a href="#"><img src="{{ single_product.images.url }}"></a>
+			<article class="gallery-wrap"> 
+				<div class="img-big-wrap">
+	   <center><img src="{{ single_product.images.url }}"></center>
 	</div> <!-- img-big-wrap.// -->
 	
 </article> <!-- gallery-wrap .end// -->
 		</aside>
 		<main class="col-md-6 border-left">
-		 <form action="{% url 'add_cart' single_product.id %}" method="GET">
+		 <form action="{% url 'add_cart' single_product.id %}" method="POST">
+		   {% csrf_token %}
 <article class="content-body">
 
 <h2 class="title">{{ single_product.product_name }}</h2>
@@ -28,62 +29,43 @@
 
 <p>{{ single_product.description }}</p>
 
-	<!-- starting color -->
-<hr>
+	<!-- starting choose color -->
+	<hr>
 	<div class="row">
 		<div class="item-option-select">
 			<h6>Choose Color</h6>
-
-			<select name="color" class="form-control">
-			  <option value="black">black</option>
-			  <option value="white">white</option>
-			  <option value="red">yellow</option>
+			<select name="color" class="form-control" required>
+				<option value="" disabled selected>Select</option>
+				{% for i in single_product.variation_set.colors %}
+				<option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+				{% endfor %}
 			</select>
-			
-	<!-- ending color -->
-		
 		</div>
-	</div> <!-- row.// -->
-
-	<!-- starting Size -->
-
+	</div>
 	<div class="row">
 		<div class="item-option-select">
 			<h6>Select Size</h6>
-			
-			<select name="size" class="form-control">
-				<option value="small">small</option>
-				<option value="medium">medium</option>
-				<option value="large">large</option>
-			  </select>
-
-	<!-- ending size -->
-
+			<select name="size" class="form-control" required>
+				<option value="" disabled selected>Select</option>
+				{% for i in single_product.variation_set.sizes %}
+				<option value="{{ i.variation_value | lower }}">{{ i.variation_value | capfirst }}</option>
+				{% endfor %}
+			</select>
 		</div>
-	</div> <!-- row.// -->
+	</div>
 	<hr>
+
 	{% if single_product.stock <= 0 %}
 	<h5 class="text-danger">Out of Stock</h5>
 	{% else %}
-	{% if in_cart %}
-	<!-- adding item to cart -->
-	<a href="#" class="btn  btn-success"> <span class="text">Added to Cart</span> <i class="fas fa-check"></i>  </a>
-	<a href="{% url 'cart' %}" class="btn  btn-outline-primary"> <span class="text">View Cart</span> <i class="fas fa-eye"></i>  </a>
-
-	{% else %}
-	<!-- <a href="./product-detail.html" class="btn  btn-primary"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </a> -->
-	<!-- <a href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i>  </a> -->
-	<!-- <button type="submit" href="{% url 'add_cart' single_product.id %}" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i>  </button> -->
-	<button type="submit" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fas fa-shopping-cart"></i>  </button>
-	
+	<button type="submit" class="btn  btn-primary"> <span class="text">Add to Cart</span> <i class="fa fa-shopping-cart"></i> </button>
 	{% endif %}
-	{% endif %}
-
 </article> <!-- product-info-aside .// -->
-	</form>
-		</main> <!-- col.// -->
-	</div> <!-- row.// -->
+</form>
+</main> <!-- col.// -->
+</div> <!-- row.// -->
 </div> <!-- card.// -->
+		<!-- start out of stock -->
 <!-- ============================ COMPONENT 1 END .// ================================= -->
 
 <br>
@@ -100,16 +82,14 @@
 		<div class="icontext w-100">
 			<img src="{% static './images/avatars/avatar1.jpg' %}" class="img-xs icon rounded-circle">
 			<div class="text">
-				<span class="date text-muted float-md-right">24.04.2020 </span>  
-				<h6 class="mb-1">Mike John </h6>
+				<span class="date text-muted float-md-right">4.08.2022 </span>  
+				<h6 class="mb-1">Amy Titan</h6>
 				
 			</div>
 		</div> <!-- icontext.// -->
 		<div class="mt-3">
 			<p>
-				Dummy comment Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip
+				I bought this blazer for my wife and it fit perfect! We love it!!
 			</p>	
 		</div>
 	</article>
