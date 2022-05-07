@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
-class AccountManager(BaseUserManager):
-    def create_user(self, first_name, last_name, phone_number, username, email, password=None):
+class MyAccountManager(BaseUserManager):
+    def create_user(self, first_name, last_name, username, email, password=None):
         if not email:
             raise ValueError('User must have an email address')
 
@@ -13,7 +13,6 @@ class AccountManager(BaseUserManager):
         user = self.model(
             email = self.normalize_email(email),
             username = username,
-            phone_number = phone_number,
             first_name = first_name,
             last_name = last_name,
         
@@ -62,8 +61,11 @@ class Account(AbstractBaseUser):
         USERNAME_FIELD = 'email'
         REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
-        objects = AccountManager()
+        objects = MyAccountManager()
 
+        def full_name(self):
+            return f'{self.first_name} {self.last_name}'
+        
         def __str__(self):
             return self.email
 
@@ -73,8 +75,7 @@ class Account(AbstractBaseUser):
         def has_module_perms(self, add_label):
             return True
 
-        def full_name(self):
-            return f'{self.first_name} {self.last_name}'
+        
 
             
 class UserProfile(models.Model):
