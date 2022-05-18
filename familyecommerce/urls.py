@@ -28,10 +28,3 @@ urlpatterns = [
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
-
-#this will be account path
-    # path('accounts/', include('accounts.urls')),
-    
-    # for orders
-    # path('orders/', include('orders.urls'))

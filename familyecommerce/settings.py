@@ -42,9 +42,7 @@ INSTALLED_APPS = [
     'accounts',
     'store',
     'cart',
-    # 'orders',
-    # 'storages',
-    # 'admin_honeypot',
+
 ]
 
 MIDDLEWARE = [
@@ -138,6 +136,7 @@ STATICFILES_DIRS = [
     'familyecommerce/static',
 ]
 
+# WHEN THIS MEDIA IS ON HTML PICTURES DON'T SHOW? 
 # MEDIA_URL = '/media/'
 # MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -156,3 +155,11 @@ from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 }
+
+#SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'testuser.django111777@gmail.com'
+EMAIL_HOST_PASSWORD = 'Testuser!111'
+EMAIL_USE_TLS = True
