@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Account
+from .models import Account, UserProfile
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse 
@@ -11,6 +11,9 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage 
+
+
+from .forms import RegistrationForm
 
 
 
@@ -28,6 +31,13 @@ def register(request):
             user = Account.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=username, password=password)
             user.phone_number = phone_number
             user.save()
+
+
+            # Create a user profile
+            profile = UserProfile()
+            profile.user_id = user.id
+            profile.profile_pictures = 'default/default-user.png'
+            profile.save()
 
 
             # User Activation
