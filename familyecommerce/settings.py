@@ -25,8 +25,9 @@ SECRET_KEY = 'django-insecure-c*p6hc28!y#gotj^z1#!zc^@*3=%g#$mwo%lphv&$dpoo=&a-6
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['localhost:8000']
 
 
 # Application definition
@@ -44,6 +45,8 @@ INSTALLED_APPS = [
     'cart',
 
 ]
+
+# DJANGO_SETTINGS_MODULE=familyecommerce.settings
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -130,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
 STATIC_ROOT = BASE_DIR / 'static'
 
 STATICFILES_DIRS = [
@@ -160,6 +164,6 @@ MESSAGE_TAGS = {
 EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'testuser.django111777@gmail.com'
-EMAIL_HOST_PASSWORD = 'Testuser!111'
+EMAIL_HOST_USER = 'testuser.livinglegends369@gmail.com'
+EMAIL_HOST_PASSWORD = 'asdfzxcv'
 EMAIL_USE_TLS = True
